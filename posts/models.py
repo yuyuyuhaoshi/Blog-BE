@@ -12,11 +12,12 @@ class Post(models.Model):
     modified_time = models.DateTimeField('上一次修改时间', default=now)
     summary = models.TextField('摘要', max_length=200, blank=True)
     pinned = models.BooleanField('置顶', default=False)
-    category = models.ForeignKey('categories.Category', verbose_name="分类", on_delete=models.PROTECT)
+    category = models.ForeignKey('categories.Category', verbose_name="分类", on_delete=models.CASCADE)
     tags = models.ManyToManyField('tags.Tag', verbose_name="标签", blank=True)
 
-    author = models.ForeignKey(User, on_delete=models.PROTECT)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     views = models.PositiveIntegerField(default=0)
+    deleted = models.BooleanField('软删除', default=False)
 
     def __str__(self):
         return self.title

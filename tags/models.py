@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 
 class Tag(models.Model):
     name = models.CharField(max_length=100, unique=True, blank=False, null=False)
+    deleted = models.BooleanField('软删除', default=False)
 
     class Meta:
         ordering = ['name']

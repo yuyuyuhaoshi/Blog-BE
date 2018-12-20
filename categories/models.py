@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 class Category(models.Model):
     name = models.CharField(max_length=100, unique=True, blank=False, null=False)
     parent_category = models.ForeignKey('self', verbose_name="父级分类", blank=True, null=True, on_delete=models.CASCADE)
+    deleted = models.BooleanField('软删除', default=False)
 
     class Meta:
         ordering = ['name']
