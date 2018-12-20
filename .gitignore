@@ -1,0 +1,29 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.py[cod]
+*$py.class
+
+# ide config file
+.idea/
+.DS_Store
+.vscode/
+
+# ignore build infos
+dist/
+saber.egg-info/
+
+# ignore log files
+.*log
+*.log
+*.log.*
+
+# ignore db files
+*.db
+db.*
+
+# ignore tmp files
+.tmp*/
+
+# virtual environment
+venv

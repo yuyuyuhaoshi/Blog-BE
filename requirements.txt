@@ -1,0 +1,8 @@
+django
+lxml
+requests
+pillow
+djangorestframework
+markdown
+django-filter
+django-cors-headers
