@@ -4,8 +4,10 @@ from django.urls import reverse
 from django.utils.timezone import now
 from django.contrib.auth.models import User
 
+from utils.base_model import SoftDeletionModel
 
-class Post(models.Model):
+
+class Post(SoftDeletionModel):
     title = models.CharField('标题', max_length=100, blank=False, null=False)
     content = models.TextField('正文', blank=False, null=False)
     created_time = models.DateTimeField('创建时间', default=now)
@@ -17,7 +19,6 @@ class Post(models.Model):
 
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     views = models.PositiveIntegerField(default=0)
-    deleted = models.BooleanField('软删除', default=False)
 
     def __str__(self):
         return self.title
@@ -27,6 +28,6 @@ class Post(models.Model):
         verbose_name = "文章"
         verbose_name_plural = verbose_name
 
-    def increase_views_num(self):
-        self.views_num += 1
-        self.save(update_fields=['views_num'])
+    def increase_views(self):
+        self.views += 1
+        self.save(update_fields=['views'])
