@@ -9,6 +9,7 @@ from posts.serializers import PostListSerializer, PostDetailSerializer
 
 
 class PostViewSet(viewsets.ReadOnlyModelViewSet):
+    # TODO Pagination
     queryset = PostListSerializer.setup_eager_loading(
         Post.objects.order_by('-pinned', '-modified_time'),
         select_related=PostListSerializer.SELECT_RELATED_FIELDS,
@@ -18,6 +19,7 @@ class PostViewSet(viewsets.ReadOnlyModelViewSet):
     http_method_names = ['get',]
     filter_backends = (filters.DjangoFilterBackend,)
     filter_fields = ('tags', 'category',)
+    lookup_field = 'id'
 
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()

@@ -28,7 +28,7 @@ class TagDetailSerializer(serializers.ModelSerializer):
         )
 
     def get_post_count(self, obj):
-        tag = obj.tag
+        tag = obj
         tag_id = tag.id
         # count = Post.objects.annotate(tags_num=Count('tags')).filter()
         return 10

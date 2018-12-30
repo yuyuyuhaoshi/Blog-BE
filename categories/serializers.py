@@ -26,11 +26,10 @@ class CategoryDetailSerializer(serializers.ModelSerializer):
         model = Category
         fields = (
             'id',
-            'url',
             'name',
             'parent_category',
             'child_category'
         )
 
-    def get_child_category(self):
+    def get_child_category(self, obj):
         return []
