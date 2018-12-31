@@ -133,3 +133,9 @@ STATIC_URL = '/static/'
 
 # 跨域
 CORS_ORIGIN_ALLOW_ALL = True
+
+
+# django-rest-framework settings
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'utils.pagination.CustomPageNumberPagination',
+}

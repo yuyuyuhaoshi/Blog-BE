@@ -19,10 +19,14 @@ from django.urls import path
 from rest_framework.routers import DefaultRouter
 
 from posts.views import PostViewSet
+from tags.views import TagViewSet
+from categories.views import CategoryViewSet
 
 router = DefaultRouter()
 
 router.register(r'posts', PostViewSet)  # 文章列表
+router.register(r'tags', TagViewSet)
+router.register(r'categories', CategoryViewSet)
 
 
 urlpatterns = [

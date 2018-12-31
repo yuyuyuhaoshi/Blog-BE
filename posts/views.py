@@ -1,7 +1,5 @@
-from django.shortcuts import render
 from django_filters import rest_framework as filters
-from rest_framework import permissions, serializers, status, viewsets
-from rest_framework.decorators import action
+from rest_framework import viewsets
 from rest_framework.response import Response
 
 from posts.models import Post
@@ -9,7 +7,6 @@ from posts.serializers import PostListSerializer, PostDetailSerializer
 
 
 class PostViewSet(viewsets.ReadOnlyModelViewSet):
-    # TODO Pagination
     queryset = PostListSerializer.setup_eager_loading(
         Post.objects.order_by('-pinned', '-modified_time'),
         select_related=PostListSerializer.SELECT_RELATED_FIELDS,

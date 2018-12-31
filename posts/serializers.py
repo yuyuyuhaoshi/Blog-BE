@@ -1,8 +1,8 @@
 from rest_framework import serializers
 
-from categories.serializers import CategoryDetailSerializer
+from categories.serializers import CategoryListSerializer
 from posts.models import Post
-from tags.serializers import TagListSerializer, TagDetailSerializer
+from tags.serializers import TagListSerializer
 from utils.mixins import EagerLoaderMixin
 
 
@@ -11,8 +11,8 @@ class PostListSerializer(serializers.HyperlinkedModelSerializer, EagerLoaderMixi
     文章列表
     """
     author = serializers.SerializerMethodField()
-    tags = TagDetailSerializer(many=True)
-    category = CategoryDetailSerializer()
+    tags = TagListSerializer(many=True)
+    category = CategoryListSerializer()
     url = serializers.HyperlinkedIdentityField(view_name='post-detail', lookup_field='id')
 
     SELECT_RELATED_FIELDS = ['author', ]
@@ -44,8 +44,8 @@ class PostListSerializer(serializers.HyperlinkedModelSerializer, EagerLoaderMixi
 
 class PostDetailSerializer(PostListSerializer):
     author = serializers.SerializerMethodField()
-    tags = TagDetailSerializer(many=True)
-    category = CategoryDetailSerializer()
+    tags = TagListSerializer(many=True)
+    category = CategoryListSerializer()
 
     class Meta:
         model = Post

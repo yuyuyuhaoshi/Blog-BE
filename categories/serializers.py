@@ -13,7 +13,6 @@ class CategoryListSerializer(serializers.HyperlinkedModelSerializer):
             'id',
             'url',
             'name',
-            'parent_category'
         )
 
 class CategoryDetailSerializer(serializers.ModelSerializer):
