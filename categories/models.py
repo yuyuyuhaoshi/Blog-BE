@@ -8,8 +8,9 @@ from utils.base_model import SoftDeletionModel
 
 
 class Category(SoftDeletionModel):
-    name = models.CharField(max_length=100, unique=True, blank=False, null=False)
+    name = models.CharField('分类名', max_length=100, unique=True, blank=False, null=False)
     parent_category = models.ForeignKey('self', verbose_name="父级分类", blank=True, null=True, on_delete=models.CASCADE)
+    created_time = models.DateTimeField('创建时间', default=now)
 
     class Meta:
         ordering = ['name']

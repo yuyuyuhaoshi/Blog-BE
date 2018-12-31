@@ -14,6 +14,7 @@ class PostListSerializer(serializers.HyperlinkedModelSerializer, EagerLoaderMixi
     tags = TagListSerializer(many=True)
     category = CategoryListSerializer()
     url = serializers.HyperlinkedIdentityField(view_name='post-detail', lookup_field='id')
+    created_time = serializers.DateTimeField(read_only=True, format="%Y-%m-%d %H:%M:%S")
 
     SELECT_RELATED_FIELDS = ['author', ]
     PREFETCH_RELATED_FIELDS = ['category', ]
@@ -46,6 +47,7 @@ class PostDetailSerializer(PostListSerializer):
     author = serializers.SerializerMethodField()
     tags = TagListSerializer(many=True)
     category = CategoryListSerializer()
+    created_time = serializers.DateTimeField(read_only=True, format="%Y-%m-%d %H:%M:%S")
 
     class Meta:
         model = Post

@@ -6,7 +6,8 @@ from utils.base_model import SoftDeletionModel
 
 
 class Tag(SoftDeletionModel):
-    name = models.CharField(max_length=100, unique=True, blank=False, null=False)
+    name = models.CharField('标题名', max_length=100, unique=True, blank=False, null=False)
+    created_time = models.DateTimeField('创建时间', default=now)
 
     class Meta:
         ordering = ['name']
@@ -15,4 +16,3 @@ class Tag(SoftDeletionModel):
 
     def __str__(self):
         return self.name
-

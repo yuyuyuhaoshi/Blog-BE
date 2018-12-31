@@ -7,13 +7,16 @@ class CategoryListSerializer(serializers.HyperlinkedModelSerializer):
     """
     分类列表
     """
+
     class Meta:
         model = Category
         fields = (
             'id',
             'url',
             'name',
+            'created_time',
         )
+
 
 class CategoryDetailSerializer(serializers.ModelSerializer):
     """
@@ -27,8 +30,12 @@ class CategoryDetailSerializer(serializers.ModelSerializer):
             'id',
             'name',
             'parent_category',
-            'child_category'
+            'child_category',
+            'created_time',
         )
 
     def get_child_category(self, obj):
-        return []
+        all_category = Category.objects.filter(parent_category=obj.id)
+        category_serializer = CategoryListSerializer(all_category, many=True,
+                                                     context={'request': self.context['request']})
+        return category_serializer.data
